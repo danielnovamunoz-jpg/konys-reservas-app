@@ -24,8 +24,13 @@ if (existsSync(path.join(ROOT, '.env'))) {
   }
 }
 
-const url = process.env.SUPABASE_URL?.trim();
-const clave = process.env.SUPABASE_ANON_KEY?.trim();
+// Acepta los nombres que crea la integración oficial Supabase ↔ Vercel.
+const primera = (...nombres) => nombres.map((n) => process.env[n]?.trim()).find(Boolean);
+const url = primera('SUPABASE_URL', 'NEXT_PUBLIC_SUPABASE_URL');
+const clave = primera(
+  'SUPABASE_ANON_KEY', 'NEXT_PUBLIC_SUPABASE_ANON_KEY',
+  'SUPABASE_PUBLISHABLE_KEY', 'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY',
+);
 const realtime = process.env.SUPABASE_REALTIME !== 'false';
 
 if (!url || !clave) {

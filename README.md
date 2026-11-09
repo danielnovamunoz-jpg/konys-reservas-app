@@ -130,7 +130,9 @@ Abre `http://localhost:3000` (público) y `http://localhost:3000/admin` (panel).
    git push -u origin main
    ```
 2. En [vercel.com](https://vercel.com) → **Add New → Project** → importa el repositorio. `vercel.json` ya define el build (`node scripts/build.mjs`) y la carpeta de salida (`dist`).
-3. En **Settings → Environment Variables** agrega `SUPABASE_URL`, `SUPABASE_ANON_KEY` y (opcional) `SUPABASE_REALTIME=true`.
+3. Variables de entorno, de una de estas dos formas:
+   - **Recomendada:** conecta la integración oficial **Supabase ↔ Vercel** (Supabase → Project Settings → Integrations → Vercel). Crea las variables sola; el build acepta `SUPABASE_URL`/`NEXT_PUBLIC_SUPABASE_URL` y `SUPABASE_ANON_KEY`/`NEXT_PUBLIC_SUPABASE_ANON_KEY`/`SUPABASE_PUBLISHABLE_KEY`, y nunca publica la clave secreta.
+   - **Manual:** en **Settings → Environment Variables** agrega `SUPABASE_URL`, `SUPABASE_ANON_KEY` y (opcional) `SUPABASE_REALTIME=true`.
 4. **Deploy**. La ruta `/admin` funciona gracias a `cleanUrls`.
 5. En Supabase → **Authentication → URL Configuration**, pon la URL de Vercel como *Site URL*.
 

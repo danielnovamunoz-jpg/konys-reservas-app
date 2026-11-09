@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Panel de administración · Konys Pizza</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0c2639">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <script src="js/env.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</head>
+<body class="admin">
+  <!-- Carga inicial (verificando la sesión) -->
+  <div class="boot" id="vista-carga" role="status" aria-live="polite">
+    <span class="spinner" aria-hidden="true"></span>
+    <span>Verificando sesión…</span>
+  </div>
+
+  <!-- ===================== ACCESO ===================== -->
+  <main class="login" id="vista-login" hidden>
+    <div class="login__card">
+      <img class="login__logo" src="assets/logo/konys-logo.png" width="640" height="185" alt="Konys · La pizza más ikónica de la ciudad">
+      <h1 class="login__title">Panel de administración</h1>
+      <p class="login__text">Ingresa con tu cuenta de administrador.</p>
+
+      <div id="login-aviso"></div>
+
+      <form class="login__form" id="login-form" novalidate>
+        <div class="field">
+          <label class="field__label" for="login-email">Correo electrónico</label>
+          <div class="input-icon">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-mail"></use></svg>
+            <input class="input" id="login-email" name="email" type="email" autocomplete="username" required placeholder="admin@konyspizza.com">
+          </div>
+        </div>
+        <div class="field">
+          <label class="field__label" for="login-password">Contraseña</label>
+          <div class="input-icon password-field">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-lock"></use></svg>
+            <input class="input" id="login-password" name="password" type="password" autocomplete="current-password" required placeholder="••••••••">
+            <button class="password-field__toggle icon-btn" type="button" id="login-ver" aria-label="Mostrar contraseña" aria-pressed="false">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-eye"></use></svg>
+            </button>
+          </div>
+        </div>
+        <p class="field__error" id="login-error" role="alert"></p>
+        <button class="btn btn--dark btn--lg btn--block" type="submit" id="login-submit">Ingresar</button>
+      </form>
+
+      <a class="login__back" href="./">
+        <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-arrow-left"></use></svg>
+        Volver al sitio
+      </a>
+    </div>
+    <p class="login__foot">Acceso exclusivo para el personal de Konys Pizza.</p>
+  </main>
+
+  <!-- ===================== PANEL ===================== -->
+  <div class="app" id="vista-app" hidden>
+    <aside class="sidebar" id="sidebar" aria-label="Menú del panel">
+      <div class="sidebar__brand">
+        <img src="assets/logo/konys-logo-claro.png" width="640" height="185" alt="Konys">
+        <span class="sidebar__tag">Admin</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="#/dashboard" data-ruta="dashboard">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-dashboard"></use></svg>Dashboard
+        </a>
+        <a class="sidebar__link" href="#/mesas" data-ruta="mesas">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-utensils"></use></svg>Mesas
+        </a>
+        <a class="sidebar__link" href="#/horarios" data-ruta="horarios">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-clock"></use></svg>Horarios
+        </a>
+        <a class="sidebar__link" href="#/reservas" data-ruta="reservas">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-clipboard"></use></svg>Reservas
+          <span class="sidebar__count" id="contador-hoy" hidden></span>
+        </a>
+        <a class="sidebar__link" href="#/carta" data-ruta="carta">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-pizza"></use></svg>Carta
+        </a>
+        <a class="sidebar__link" href="#/perfil" data-ruta="perfil">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-user"></use></svg>Perfil
+        </a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="sidebar__user">
+          <span class="avatar" id="usuario-avatar" aria-hidden="true">A</span>
+          <div class="sidebar__user-info">
+            <p class="sidebar__user-name" id="usuario-nombre">Administrador</p>
+            <p class="sidebar__user-email" id="usuario-email"></p>
+          </div>
+        </div>
+        <button class="btn btn--block sidebar__logout" type="button" id="btn-salir">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-log-out"></use></svg>
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
+
+    <div class="app__main">
+      <header class="topbar">
+        <button class="icon-btn topbar__menu" type="button" id="btn-menu" aria-label="Abrir menú" aria-controls="sidebar" aria-expanded="false">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-menu"></use></svg>
+        </button>
+        <div class="topbar__titles">
+          <h1 class="topbar__title" id="titulo-vista">Dashboard</h1>
+          <p class="topbar__subtitle" id="subtitulo-vista"></p>
+        </div>
+        <div class="topbar__actions" id="acciones-vista"></div>
+        <a class="btn btn--ghost btn--sm topbar__site" href="./" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-external"></use></svg>
+          <span>Ver sitio</span>
+        </a>
+      </header>
+      <main class="app__content" id="contenido" tabindex="-1"></main>
+    </div>
+  </div>
+</body>
+</html>

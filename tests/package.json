@@ -1,0 +1,13 @@
+{
+  "name": "konys-reservas-tests",
+  "private": true,
+  "type": "module",
+  "description": "Pruebas automatizadas del esquema SQL (PGlite) y servidor local que emula la API de Supabase para probar la interfaz sin credenciales.",
+  "scripts": {
+    "test": "node --test db.test.mjs",
+    "mock": "node mock-supabase.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.11"
+  }
+}

@@ -1,0 +1,142 @@
+/* =============================================================================
+   KONYS PIZZA · Adaptación a tablets y teléfonos
+   Prioridad móvil: muchos clientes llegan desde Instagram y WhatsApp.
+   ========================================================================== */
+
+/* ---------- Portátiles pequeños ---------- */
+@media (max-width: 1080px) {
+  .site-footer__grid { grid-template-columns: 1fr 1fr; }
+  .site-nav__link { padding: 0 9px; }
+}
+
+/* ---------- Tablets ---------- */
+@media (max-width: 960px) {
+  :root { --header-h: 64px; }
+
+  /* Menú desplegable */
+  .nav-toggle { display: inline-block; }
+  .site-header__actions { margin-left: auto; }
+  .header-admin span { display: none; }
+  .header-admin { width: 40px; padding: 0; }
+  .site-nav {
+    position: fixed; inset: var(--header-h) 0 auto; margin: 0; padding: 12px var(--gutter) 24px;
+    background: var(--white); color: var(--navy-800); box-shadow: 0 24px 40px -20px rgba(7, 26, 39, 0.45);
+    transform: translateY(-8px); opacity: 0; visibility: hidden;
+    transition: transform var(--t) var(--ease), opacity var(--t) var(--ease), visibility 0s linear var(--t);
+  }
+  .site-header.nav-open .site-nav { transform: none; opacity: 1; visibility: visible; transition-delay: 0s; }
+  .site-header.nav-open { background: var(--white); color: var(--navy-800); }
+  .site-header.nav-open::before { opacity: 0; }
+  .site-header.nav-open .brand__logo--light { opacity: 0; }
+  .site-header.nav-open .brand__logo--dark { opacity: 1; }
+  .site-header.nav-open .header-admin { --btn-bd: var(--gray-200); }
+  .site-nav__list { flex-direction: column; gap: 0; }
+  .site-nav__link { height: 52px; width: 100%; padding: 0 4px; font-size: 1.05rem; border-bottom: 1px solid var(--gray-100); }
+  .site-nav__link::after { display: none; }
+  .site-nav__link[aria-current='true'] { color: var(--orange-600); }
+  .site-nav__mobile-cta { display: block; margin-top: 18px; }
+
+  .about__grid { grid-template-columns: 1fr; }
+  .about__media { max-width: 560px; }
+  .about__media img { aspect-ratio: 16 / 11; }
+  .about__badge { left: 16px; bottom: -18px; }
+
+  .reservas__head { grid-template-columns: 1fr; }
+
+  .ubicacion__grid { grid-template-columns: 1fr; }
+  .ubicacion__map { min-height: 340px; }
+
+  /* Modal de reserva en una columna */
+  .reserva { grid-template-columns: 1fr; }
+  .reserva__col + .reserva__col { border-left: 0; border-top: 1px solid var(--gray-100); }
+}
+
+/* ---------- Teléfonos ---------- */
+@media (max-width: 700px) {
+  .section { padding-block: 56px; }
+  .section__head { margin-bottom: 24px; }
+
+  .hero { min-height: 100svh; }
+  .hero__content { padding-top: calc(var(--header-h) + 28px); gap: 14px; }
+  .hero__title { width: min(78vw, 360px); }
+  .hero__actions { width: 100%; flex-direction: column; }
+  .hero__actions .btn { width: 100%; }
+  .hero__strip-inner { justify-content: flex-start; gap: 8px 20px; font-size: 0.86rem; padding-block: 14px; }
+  .hero__fact--link { display: none; }
+
+  .features { grid-template-columns: 1fr; gap: 16px; }
+
+  .steps { display: none; }
+  .reservas__foto { display: none; }
+  .reservas__toolbar { flex-direction: column; }
+  .date-chips { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scrollbar-width: none; }
+  .date-chips::-webkit-scrollbar { display: none; }
+  .chip { flex: none; }
+  .segmented { width: 100%; }
+  .segmented button { flex: 1; justify-content: center; }
+  .reservas__context { flex-direction: column; align-items: flex-start; }
+
+  /* Mesas como lista vertical (mockup móvil) */
+  .mesas-grid { grid-template-columns: 1fr; gap: 12px; }
+  .mesa-card { flex-direction: row; align-items: stretch; }
+  .mesa-card__media { aspect-ratio: auto; width: 112px; flex: none; }
+  .mesa-card__placeholder { background-size: 220px; }
+  .mesa-card__placeholder span { font-size: 1.7rem; }
+  .mesa-card__zone { display: none; }
+  .mesa-card__body { grid-template-columns: 1fr auto; grid-template-areas: 'name action' 'meta action' 'status status'; gap: 6px 12px; padding: 14px; align-items: center; }
+  .mesa-card__name { grid-area: name; font-size: 1.05rem; }
+  .mesa-card__meta { grid-area: meta; font-size: 0.86rem; }
+  .mesa-card__status { grid-area: status; justify-content: flex-start; gap: 10px; }
+  .mesa-card__action { grid-area: action; margin: 0; }
+  .mesa-card__action .btn { min-height: 40px; padding: 0 16px; }
+  .mesa-card__action .btn-text-long { display: none; }
+  .mesa-card--skeleton .mesa-card__media { width: 112px; aspect-ratio: auto; }
+
+  /* Carta como lista compacta */
+  .carta__tabs { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; margin-inline: calc(-1 * var(--gutter)); padding: 2px var(--gutter) 4px; scrollbar-width: none; margin-bottom: 28px; }
+  .carta__tabs::-webkit-scrollbar { display: none; }
+  .carta-tab { flex: none; }
+  .platos-grid { grid-template-columns: 1fr; gap: 12px; }
+  .plato { flex-direction: row; }
+  .plato__media { width: 108px; aspect-ratio: auto; flex: none; }
+  .plato__body { padding: 12px 14px; gap: 4px; }
+  .plato__name { font-size: 0.98rem; }
+  .plato__desc { -webkit-line-clamp: 2; font-size: 0.82rem; }
+  .plato__media .badge { left: 6px; top: 6px; height: 22px; padding: 0 8px; font-size: 0.7rem; }
+
+  .ubicacion__actions .btn { flex: 1; }
+
+  .site-footer__grid { grid-template-columns: 1fr; gap: 28px; }
+
+  /* Modal de reserva a pantalla completa con flecha de regreso */
+  .modal--reserva { padding: 0; place-items: stretch; }
+  .modal--reserva .modal__dialog { height: 100vh; height: 100dvh; max-height: 100vh; max-height: 100dvh; border-radius: 0; animation-name: page-in; }
+  .modal--reserva.is-leaving .modal__dialog { animation-name: page-out; }
+  .modal--reserva .modal__back { display: inline-grid; }
+  .modal--reserva .modal__close { display: none; }
+  .modal--reserva .modal__header { padding: 12px 16px; align-items: center; }
+  .modal--reserva .modal__title { font-size: 1.1rem; }
+  .modal--reserva .modal__subtitle { margin-top: 2px; font-size: 0.82rem; }
+  .reserva__col { padding: 18px 16px 22px; gap: 20px; }
+  .reserva__col + .reserva__col { background: var(--white); }
+  .slots { grid-template-columns: repeat(3, 1fr); }
+  .slots-loading { grid-template-columns: repeat(3, 1fr); }
+  .form-row { grid-template-columns: 1fr; }
+  .reserva__submit { position: sticky; bottom: 0; margin: 0 -16px -22px; padding: 12px 16px calc(14px + env(safe-area-inset-bottom)); background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px); border-top: 1px solid var(--gray-100); }
+  .confirmacion { padding: 28px 18px; }
+  .confirmacion__acciones .btn { width: 100%; }
+  @keyframes page-in { from { transform: translateX(100%); } }
+  @keyframes page-out { to { transform: translateX(100%); } }
+}
+
+@media (max-width: 380px) {
+  .mesa-card__media { width: 88px; }
+  .plato__media { width: 92px; }
+  .cal { padding: 8px; }
+  .cal__grid { gap: 2px; }
+}
+
+/* Pantallas anchas: un poco más de aire */
+@media (min-width: 1400px) {
+  :root { --container: 1260px; }
+}

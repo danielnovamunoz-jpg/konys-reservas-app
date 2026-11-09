@@ -1,0 +1,7 @@
+{
+  "_comentario": "Cuentas SOLO para el servidor local de pruebas (mock-supabase.mjs). No existen en Supabase real.",
+  "usuarios": [
+    { "email": "admin@konys.test", "password": "konys-prueba-2026", "admin": true },
+    { "email": "cliente@konys.test", "password": "cliente-prueba-2026", "admin": false }
+  ]
+}

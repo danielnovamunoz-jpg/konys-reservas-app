@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Konys Pizza · Reserva tu mesa en Bucaramanga</title>
+  <meta name="description" content="Konys Pizza, la única pizzería en kono de Bucaramanga. Consulta las mesas disponibles, elige fecha y hora y reserva en línea en segundos. Cra. 36 con Calle 41, El Prado.">
+  <meta name="theme-color" content="#0c2639">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Konys Pizza · La pizza más ikónica de la ciudad">
+  <meta property="og:description" content="Reserva tu mesa en línea en Konys Pizza, Bucaramanga.">
+  <meta property="og:image" content="assets/images/fachada-konys.webp">
+  <meta property="og:locale" content="es_CO">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/images/fachada-konys-mobile.webp" media="(max-width: 700px)">
+  <link rel="preload" as="image" href="assets/images/fachada-konys.webp" media="(min-width: 701px)">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Credenciales públicas de Supabase (ver js/env.example.js). -->
+  <script src="js/env.js"></script>
+  <script type="module" src="js/cliente.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#reservar">Saltar a las reservas</a>
+
+  <!-- ===================== NAVEGACIÓN ===================== -->
+  <header class="site-header" id="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#inicio" aria-label="Konys Pizza, ir al inicio">
+        <img class="brand__logo brand__logo--light" src="assets/logo/konys-logo-claro.png" alt="" width="640" height="185">
+        <img class="brand__logo brand__logo--dark" src="assets/logo/konys-logo.png" alt="" width="640" height="185">
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Principal">
+        <ul class="site-nav__list" role="list">
+          <li><a class="site-nav__link" href="#inicio">Inicio</a></li>
+          <li><a class="site-nav__link" href="#reservar">Reservar mesa</a></li>
+          <li><a class="site-nav__link" href="#carta">Nuestra carta</a></li>
+          <li><a class="site-nav__link" href="#ubicacion">Ubicación</a></li>
+          <li><a class="site-nav__link" href="#contacto">Contacto</a></li>
+        </ul>
+        <div class="site-nav__mobile-cta">
+          <a class="btn btn--primary btn--lg btn--block" href="#reservar">Reservar una mesa</a>
+        </div>
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="btn btn--sm header-admin" href="admin.html" title="Panel de administración">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-lock"></use></svg>
+          <span>Admin</span>
+        </a>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+          <span class="nav-toggle__bar"></span><span class="nav-toggle__bar"></span><span class="nav-toggle__bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+      <picture class="hero__media">
+        <source media="(max-width: 700px)" srcset="assets/images/fachada-konys-mobile.webp" width="900" height="695">
+        <img src="assets/images/fachada-konys.webp" width="1920" height="1483" alt="Fachada de Konys Pizza de noche, con su letrero iluminado y la terraza llena de plantas" fetchpriority="high" decoding="async">
+      </picture>
+      <div class="hero__shade" aria-hidden="true"></div>
+
+      <div class="container hero__content">
+        <p class="eyebrow eyebrow--light reveal">Bucaramanga · Barrio El Prado</p>
+        <h1 class="hero__title reveal" id="hero-titulo">
+          <span class="sr-only">Konys Pizza. La pizza más ikónica de la ciudad</span>
+          <img src="assets/logo/konys-logo-claro.png" width="640" height="185" alt="">
+        </h1>
+        <p class="hero__lead reveal">La única pizzería en kono de Bucaramanga.</p>
+        <p class="hero__text reveal">Pizza recién horneada servida en kono, siempre con papitas al horno. Elige tu mesa en el salón o la terraza y resérvala en menos de un minuto.</p>
+        <div class="hero__actions reveal">
+          <a class="btn btn--primary btn--lg" href="#reservar">
+            Reservar una mesa
+            <svg class="icon icon-shift" aria-hidden="true"><use href="assets/icons/sprite.svg#i-arrow-right"></use></svg>
+          </a>
+          <a class="btn btn--light btn--lg" href="#carta">Explorar nuestra carta</a>
+        </div>
+      </div>
+
+      <div class="hero__strip">
+        <div class="container hero__strip-inner">
+          <p class="hero__fact" id="hero-estado">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span><strong>Horario</strong> <span class="hero__fact-detail">12:30 – 2:30 p. m. · 5:00 – 11:00 p. m.</span></span>
+          </p>
+          <p class="hero__fact">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-map-pin"></use></svg>
+            <span>Cra. 36 con Calle 41 · El Prado</span>
+          </p>
+          <a class="hero__fact hero__fact--link" href="https://www.instagram.com/konys_pizza/" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-instagram"></use></svg>
+            <span>@konys_pizza</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRESENTACIÓN ===================== -->
+    <section class="section about" id="nosotros" aria-labelledby="about-titulo">
+      <div class="container about__grid">
+        <figure class="about__media reveal">
+          <img src="assets/images/kono-detalle.webp" width="1400" height="934" loading="lazy" decoding="async" alt="Primer plano de un kono de pizza gratinado con carne, pollo y pimentón">
+          <figcaption class="about__badge">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-award"></use></svg>
+            <span><strong>Ganadora</strong> Pizza Master 2023</span>
+          </figcaption>
+        </figure>
+
+        <div class="about__copy">
+          <p class="eyebrow reveal">Somos Konys</p>
+          <h2 class="section__title reveal" id="about-titulo">La pizza que se disfruta en kono.</h2>
+          <p class="section__lead reveal">Reinventamos la pizza: masa crocante en forma de kono, rellena y gratinada, para que la disfrutes donde quieras. Te esperamos en la esquina de la Cra. 36 con Calle 41, en el barrio El Prado.</p>
+
+          <ul class="features" role="list">
+            <li class="feature reveal">
+              <span class="feature__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-pizza"></use></svg></span>
+              <div>
+                <h3 class="feature__title">Única en kono</h3>
+                <p class="feature__text">La única pizzería en kono de Bucaramanga.</p>
+              </div>
+            </li>
+            <li class="feature reveal">
+              <span class="feature__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-award"></use></svg></span>
+              <div>
+                <h3 class="feature__title">Pizza Master 2023</h3>
+                <p class="feature__text">Nuestra Bukara, homenaje a la Ciudad Bonita, se llevó el primer lugar.</p>
+              </div>
+            </li>
+            <li class="feature reveal">
+              <span class="feature__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-flame"></use></svg></span>
+              <div>
+                <h3 class="feature__title">Papitas al horno</h3>
+                <p class="feature__text">Todos nuestros konys vienen con papitas horneadas, sin aceite.</p>
+              </div>
+            </li>
+            <li class="feature reveal">
+              <span class="feature__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-party"></use></svg></span>
+              <div>
+                <h3 class="feature__title">Llegamos a tus eventos</h3>
+                <p class="feature__text">Celebra con nosotros o lleva Konys a tu próxima celebración.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RESERVAS · MESAS ===================== -->
+    <section class="section reservas" id="reservar" aria-labelledby="reservas-titulo">
+      <div class="container">
+        <header class="section__head reservas__head">
+          <div class="reservas__intro">
+            <p class="eyebrow reveal">Reservas en línea</p>
+            <h2 class="section__title reveal" id="reservas-titulo">Nuestras mesas</h2>
+            <p class="section__lead reveal">Elige tu mesa, la fecha y la hora. La disponibilidad es real y tu reserva queda confirmada al instante, sin llamadas.</p>
+            <ol class="steps reveal" role="list" aria-label="Cómo reservar">
+              <li class="steps__item"><span class="steps__num">1</span>Elige tu mesa</li>
+              <li class="steps__item"><span class="steps__num">2</span>Fecha y hora</li>
+              <li class="steps__item"><span class="steps__num">3</span>Confirma</li>
+            </ol>
+          </div>
+          <figure class="reservas__foto reveal">
+            <img src="assets/images/mesa-reservada.webp" width="900" height="1600" loading="lazy" decoding="async" alt="Mesa del salón de Konys con letrero de reservado y decoración de cumpleaños">
+            <figcaption>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-check-circle"></use></svg>
+              Tu mesa, lista cuando llegues
+            </figcaption>
+          </figure>
+        </header>
+
+        <div class="reservas__toolbar">
+          <div class="date-chips" role="group" aria-label="Fecha para consultar disponibilidad" id="fecha-chips">
+            <button class="chip" type="button" data-fecha="hoy" aria-pressed="true">Hoy</button>
+            <button class="chip" type="button" data-fecha="manana" aria-pressed="false">Mañana</button>
+            <label class="chip chip--picker">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-calendar"></use></svg>
+              <span class="chip__label" id="fecha-otra-label">Otra fecha</span>
+              <input type="date" id="fecha-otra" aria-label="Elegir otra fecha">
+            </label>
+          </div>
+          <div class="segmented" role="group" aria-label="Filtrar por zona" id="zona-filtro">
+            <button type="button" data-zona="" aria-pressed="true">Todas</button>
+            <button type="button" data-zona="salon" aria-pressed="false">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-armchair"></use></svg>Salón
+            </button>
+            <button type="button" data-zona="terraza" aria-pressed="false">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-sun"></use></svg>Terraza
+            </button>
+          </div>
+        </div>
+
+        <div class="reservas__context">
+          <p id="reservas-contexto" aria-live="polite">Consultando disponibilidad…</p>
+          <ul class="legend" role="list" aria-label="Estados de las mesas">
+            <li><span class="badge badge--success">Libre</span></li>
+            <li><span class="badge badge--danger">Ocupada</span></li>
+            <li><span class="badge badge--muted">Inactiva</span></li>
+          </ul>
+        </div>
+
+        <div class="mesas-grid" id="mesas-grid" aria-busy="true">
+          <div class="mesa-card mesa-card--skeleton" aria-hidden="true"><div class="skeleton mesa-card__media"></div><div class="mesa-card__body"><div class="skeleton" style="height:18px;width:60%"></div><div class="skeleton" style="height:14px;width:80%"></div><div class="skeleton" style="height:38px"></div></div></div>
+          <div class="mesa-card mesa-card--skeleton" aria-hidden="true"><div class="skeleton mesa-card__media"></div><div class="mesa-card__body"><div class="skeleton" style="height:18px;width:60%"></div><div class="skeleton" style="height:14px;width:80%"></div><div class="skeleton" style="height:38px"></div></div></div>
+          <div class="mesa-card mesa-card--skeleton" aria-hidden="true"><div class="skeleton mesa-card__media"></div><div class="mesa-card__body"><div class="skeleton" style="height:18px;width:60%"></div><div class="skeleton" style="height:14px;width:80%"></div><div class="skeleton" style="height:38px"></div></div></div>
+          <div class="mesa-card mesa-card--skeleton" aria-hidden="true"><div class="skeleton mesa-card__media"></div><div class="mesa-card__body"><div class="skeleton" style="height:18px;width:60%"></div><div class="skeleton" style="height:14px;width:80%"></div><div class="skeleton" style="height:38px"></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CARTA ===================== -->
+    <section class="section carta" id="carta" aria-labelledby="carta-titulo">
+      <div class="container">
+        <header class="section__head section__head--center">
+          <p class="eyebrow eyebrow--light reveal">Nuestra carta</p>
+          <h2 class="section__title reveal" id="carta-titulo">Sabores ikónicos</h2>
+          <p class="section__lead reveal">Precios en pesos colombianos. Carta informativa: los pedidos se hacen directamente en el restaurante.</p>
+        </header>
+
+        <div class="carta__tabs" role="tablist" aria-label="Categorías de la carta" id="carta-tabs"></div>
+        <div class="carta__panel" id="carta-panel" role="tabpanel" aria-live="polite" aria-busy="true">
+          <div class="platos-grid">
+            <div class="plato plato--skeleton" aria-hidden="true"><div class="skeleton plato__media"></div><div class="plato__body"><div class="skeleton" style="height:16px;width:70%"></div><div class="skeleton" style="height:12px"></div><div class="skeleton" style="height:12px;width:50%"></div></div></div>
+            <div class="plato plato--skeleton" aria-hidden="true"><div class="skeleton plato__media"></div><div class="plato__body"><div class="skeleton" style="height:16px;width:70%"></div><div class="skeleton" style="height:12px"></div><div class="skeleton" style="height:12px;width:50%"></div></div></div>
+            <div class="plato plato--skeleton" aria-hidden="true"><div class="skeleton plato__media"></div><div class="plato__body"><div class="skeleton" style="height:16px;width:70%"></div><div class="skeleton" style="height:12px"></div><div class="skeleton" style="height:12px;width:50%"></div></div></div>
+            <div class="plato plato--skeleton" aria-hidden="true"><div class="skeleton plato__media"></div><div class="plato__body"><div class="skeleton" style="height:16px;width:70%"></div><div class="skeleton" style="height:12px"></div><div class="skeleton" style="height:12px;width:50%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== UBICACIÓN ===================== -->
+    <section class="section ubicacion" id="ubicacion" aria-labelledby="ubicacion-titulo">
+      <div class="container ubicacion__grid">
+        <div class="ubicacion__info">
+          <p class="eyebrow reveal">Ubicación</p>
+          <h2 class="section__title reveal" id="ubicacion-titulo">Visítanos en El Prado</h2>
+
+          <address class="ubicacion__address reveal">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-map-pin"></use></svg>
+            <span><strong>Cra. 36 con Calle 41, esquina</strong><br>Barrio El Prado · Bucaramanga, Santander</span>
+          </address>
+
+          <div class="horario-card reveal">
+            <h3 class="horario-card__title">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-clock"></use></svg>
+              Horarios de atención
+            </h3>
+            <dl class="horario-card__list" id="horarios-lista">
+              <div class="skeleton" style="height:18px"></div>
+              <div class="skeleton" style="height:18px;width:80%"></div>
+            </dl>
+          </div>
+
+          <div class="ubicacion__actions reveal">
+            <a class="btn btn--dark" id="btn-como-llegar" href="https://www.google.com/maps/dir/?api=1&amp;destination=Konys+pizza+kono%2C+Bucaramanga" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-navigation"></use></svg>
+              Cómo llegar
+            </a>
+            <a class="btn btn--ghost" href="https://wa.me/573224603184" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-message"></use></svg>
+              Escríbenos por WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="ubicacion__map reveal">
+          <iframe
+            title="Mapa de Konys Pizza en Google Maps"
+            src="https://www.google.com/maps?q=Konys+pizza+kono,+Bucaramanga&amp;z=17&amp;hl=es&amp;output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER / CONTACTO ===================== -->
+  <footer class="site-footer" id="contacto">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <img src="assets/logo/konys-logo-claro.png" width="640" height="185" alt="Konys · La pizza más ikónica de la ciudad" loading="lazy">
+        <p>Disfrútala donde quieras. Llegamos a todos tus eventos.</p>
+      </div>
+
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">Visítanos</h2>
+        <p>Cra. 36 con Calle 41, esquina<br>Barrio El Prado, Bucaramanga</p>
+        <p class="site-footer__hours" id="footer-horario">12:30 – 2:30 p. m. y 5:00 – 11:00 p. m.</p>
+      </div>
+
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">Contacto</h2>
+        <ul class="site-footer__links" role="list">
+          <li><a href="https://wa.me/573224603184" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-message"></use></svg>WhatsApp +57 322 460 3184</a></li>
+          <li><a href="https://www.instagram.com/konys_pizza/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-instagram"></use></svg>Instagram @konys_pizza</a></li>
+          <li><a href="https://www.tripadvisor.co/Restaurant_Review-g297474-d24866358-Reviews-Konys_Pizza-Bucaramanga_Santander_Department.html" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-external"></use></svg>Konys en Tripadvisor</a></li>
+          <li><a href="https://soyclubify.com/d/konys" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-external"></use></svg>Domicilios</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">Explora</h2>
+        <ul class="site-footer__links" role="list">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#reservar">Reservar mesa</a></li>
+          <li><a href="#carta">Nuestra carta</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container site-footer__bottom">
+      <p>© <span id="anio">2026</span> Konys Pizza · Bucaramanga, Santander</p>
+      <a href="admin.html">Panel administrativo</a>
+    </div>
+  </footer>
+</body>
+</html>

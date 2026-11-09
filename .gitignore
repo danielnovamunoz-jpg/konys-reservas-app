@@ -1,0 +1,22 @@
+# Credenciales locales (se generan en Vercel a partir de variables de entorno)
+js/env.js
+.env
+.env.*
+!.env.example
+
+# Build y dependencias
+dist/
+node_modules/
+tests/node_modules/
+tests/.mock-storage/
+
+# Herramientas locales
+.vercel/
+.claude/
+.vscode/
+.idea/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini

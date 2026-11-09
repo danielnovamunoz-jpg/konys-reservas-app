@@ -7,6 +7,9 @@ Aplicación web para **Konys Pizza** (Cra. 36 con Calle 41, barrio El Prado, Buc
 
 La base de datos garantiza que **nunca** haya dos reservas cruzadas para la misma mesa, incluso si dos clientes confirman al mismo tiempo.
 
+**En producción:** https://konys-reservas-app.vercel.app · Panel: https://konys-reservas-app.vercel.app/admin
+(Vercel, con despliegue automático en cada push a `main` · Supabase `konys-reservas`).
+
 ---
 
 ## Funcionalidades

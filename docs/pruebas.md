@@ -42,5 +42,19 @@ Servidor local `tests/mock-supabase.mjs` (API compatible con Supabase sobre Post
 | Panel en móvil: menú lateral desplegable y tablas convertidas en tarjetas | ✔ |
 | Build de Vercel: falla sin variables, rechaza claves `service_role`, genera `dist/` sin archivos internos | ✔ |
 
-## 3. Pendiente en el entorno real
-Con el proyecto de Supabase creado, repetir la reserva de punta a punta y verificar Realtime (en el servidor local se usa la recarga periódica).
+## 3. Verificación en producción
+`https://konys-reservas-app.vercel.app` con el proyecto real de Supabase `konys-reservas`.
+
+| Prueba | Resultado |
+|---|---|
+| `schema.sql` y `seed.sql` ejecutados; 14 horarios, 51 platos, 11 mesas, RLS en las 5 tablas, 19 políticas, bucket y 4 tablas en Realtime | ✔ |
+| Registros públicos de Auth desactivados; administrador registrado; *Site URL* de producción | ✔ |
+| Build de Vercel con variables de entorno (clave pública `sb_publishable_`) | ✔ |
+| Página pública carga mesas, disponibilidad, carta y estado "Abierto/Cerrado" sin errores de consola | ✔ |
+| **Realtime:** marcar un plato como no disponible desde la base de datos se refleja en la página abierta sin recargar | ✔ |
+| Reserva completa desde la interfaz → confirmación con código | ✔ |
+| Mismo horario de nuevo → `HORARIO_OCUPADO`; 12 personas en mesa de 8 → `CAPACIDAD_EXCEDIDA`; horario mostrado como `ocupado` | ✔ |
+| Público intentando leer reservas o editar mesas → 401 | ✔ |
+| Reserva de prueba eliminada al terminar (base en 0 reservas) | ✔ |
+
+Pendiente: iniciar sesión en `/admin` con la cuenta del administrador (requiere su contraseña).
